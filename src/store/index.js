@@ -75,7 +75,6 @@ export default new Vuex.Store({
                 Cookies.remove('saved_email');
             } else {
                 Cookies.set('saved_email', email, {
-                    expires: 0,
                     path: '',
                 });
             }

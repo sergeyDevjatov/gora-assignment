@@ -112,7 +112,6 @@
                 });
             },
             checkEmailValidity() {
-                console.log(this.emailPattern.test(this.email))
                 this.emailError = this.emailPattern.test(this.email)
                     ? null
                     : 'Invalid email';
