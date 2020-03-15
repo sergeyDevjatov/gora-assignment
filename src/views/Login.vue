@@ -74,7 +74,7 @@
             },
         },
         mounted() {
-            window.addEventListener('beforeunload', this.beforeWindowUnloadHandler);
+            window.addEventListener('pagehide', this.beforeWindowUnloadHandler, false);
 
             this.email = this.savedEmail;
         },
