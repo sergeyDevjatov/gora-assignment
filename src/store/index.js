@@ -22,7 +22,7 @@ export default new Vuex.Store({
     state: {
         authToken: Cookies.get('auth_token') ?? null,
         authenticationError: null,
-        savedEmail: sessionStorage.getItem(SAVED_EMAIL_STORAGE_KEY) ?? null,
+        savedEmail: Cookies.get('saved_email') ?? null,
     },
     actions: {
         authorize({ dispatch, commit }, {
@@ -72,10 +72,18 @@ export default new Vuex.Store({
             email,
         }) {
             if(!email) {
+                Cookies.remove('saved_email');
+            } else {
+                Cookies.set('saved_email', email, {
+                    expires: 0,
+                    path: '',
+                });
+            }
+            /*if(!email) {
                 sessionStorage.removeItem(SAVED_EMAIL_STORAGE_KEY);
             } else {
                 sessionStorage.setItem(SAVED_EMAIL_STORAGE_KEY, email);
-            }
+            }*/
             commit('setSavedEmail', {
                 email: email || null,
             });
